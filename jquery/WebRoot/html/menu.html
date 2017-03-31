@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Z形菜单</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../css/H-ui.css">
+  <link rel="stylesheet" type="text/css" href="../css/Hui-iconfont/1.0.8/iconfont.min.css">
+	<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('#first').bind('click',function(){
+			
+			if($('#second').attr('style')=='display: none;'){
+				//$('#one').remove('.Hui-iconfont-add3')
+				//$('#one').addClass('Hui-iconfont-shenhe-tingyong')
+				$('#one').removeAttr('hidden')
+				$('#id1').attr('hidden','hidden')
+			$('#second').css('display','inherit')
+			$('#second').addClass('distance1')	
+			$('#second').attr('style')
+		
+			}else if($('#second').attr('style')=='display: inherit;'){
+				//$('#one').remove('Hui-iconfont-shenhe-tingyong')
+				//$('#one').addClass('Hui-iconfont-add3')
+				$('#id1').removeAttr('hidden')
+				$('#one').attr('hidden','hidden')
+				$('#second').css('display','none')
+			
+			}
+		})
+		$('#changanqu').bind('click',function(){
+			if($('#third').attr('style')=='display: none;'){
+				$('#two').removeAttr('hidden')
+				$('#id2').attr('hidden','hidden')
+			$('#third').css('display','inherit')
+			$('#third').addClass('distance2')
+			
+			}else if($('#third').attr('style')=='display: inherit;'){
+				$('#id2').removeAttr('hidden')
+				$('#two').attr('hidden','hidden')
+				$('#third').css('display','none')
+			
+			}
+			
+		})
+	});
+	</script>
+		<style type="text/css">
+		li{list-style:none;}
+		.distance1{margin-left: 40px;}
+		.distance2{margin-left: 60px;}
+		ul li{cursor: pointer;}
+		</style>
+  </head>
+  
+  <body>
+    <h3>树形菜单</h3>
+    
+    <div style="width: 300px;">
+    <ul style="font-size: 20px;">
+    	<li id="first">
+    	<i class="Hui-iconfont Hui-iconfont-add3" id="id1"></i>
+    	<i class="Hui-iconfont Hui-iconfont-shenhe-tingyong" id="one" hidden="hidden"></i>
+    	西安市</li>
+    	<li>	<ul style="display: none;" id="second">
+    			<li><i class="Hui-iconfont" >&#xe610;</i>临潼区</li>
+    			<li><i class="Hui-iconfont" >&#xe610;</i>高新区</li>
+    			<li id="changanqu">
+    			<i class="Hui-iconfont Hui-iconfont-add3" id="id2"></i>
+    			<i class="Hui-iconfont Hui-iconfont-shenhe-tingyong" id="two" hidden="hidden"></i>
+    				长安区</li>
+    				<ul style="display: none;" id="third">
+    					<li><i class="Hui-iconfont Hui-iconfont-add3" id="id31"></i>郭杜街道</li>
+    					<li><i class="Hui-iconfont Hui-iconfont-add3" id="id32"></i>樱花广场</li>
+    				</ul>			
+    			<li><i class="Hui-iconfont" >&#xe610;</i>莲湖区</li>
+    		</ul>
+    	</li>
+    </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jquery1.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+  <script type="text/javascript">
+  
+  $(function(){//可以多次执行
+	  $('#jy').css('color','red').css('font-size','30px')
+	  //获取页面元素的ID并且设置他的css属性
+	  //alert($)
+	  //alert($())
+	 //alert($('#jy').get(0))//获取的DOm对象
+	 // window.onload( $('#jy').css('color','red').css('font-size','200px'))
+  	//等待页面全部加载完毕,只被执行一次
+  			//$('#jy').size()
+  	$('#jy').length
+  	//alert($('#jy').size())
+  	alert($('div').length)
+  	//jQuery.noConfilct();//jQuery库失效
+  	//var $$=jQuery
+  	//获取子节点， 等同于children('p')
+  	$('#box>p').css('color','red')
+  	
+  	//获取节点=$('ul li').find('a').css('color,'red')
+  	$('ul li a').css('color','red')
+  	//通配符 *
+  	alert($('*').length)
+  	//配合前面使用
+  	alert($('ul *').length)
+  	//获取节点名字
+  	alert($('div')[0].nodeName)
+  	//prev获取同级的上一级节点 ，next获取同级的下一个节点,sibings所有的同级
+  	$('#s').nextAll('a').css('color','green');
+  	//nextUntil()方法,遇到p时停止  对应的还有prevUntil
+  	$('#s').nextUntil('p').css('font-size','50px')
+  	
+  	//获取a标签下的title节点
+  	$('a[title!=num1]').css('color','red')
+  	//获取字串
+  	$('a[title*=n]').css('font-size','50px')
+  });
+  </script>
+  </head>
+  
+  <body>
+  <!--  
+    <div id="jy">第一个jquery案例的开始</div>
+     <div id="jy">第er个jquery案例的开始</div>
+      <div id="jy">第san个jquery案例的开始</div>-->
+      <div id="box">
+      <p>常规选择器</p>
+      <p>常规选择器</p>
+      <div>
+      	<p>常规选择器</p>
+      	<p>常规选择器</p>
+      </div>
+      </div>
+     
+      <ul>
+      <li><a href="#">lia</a></li>
+      <li><a href="#">lia</a></li>
+      </ul>
+       <strong id="s">strong</strong>
+      <a href="#">a</a>
+      <a href="#">a</a>
+      <p>常规选择器</p>
+      <a href="#">a</a>
+      <a href="#">a</a>
+      。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。<br>
+      <a title="num1">num1</a>
+      <a>num1</a>
+      <a>num1</a>
+      <a>num1</a>
+      <a title="num5">num5</a>
+      
+  </body>
+</html>

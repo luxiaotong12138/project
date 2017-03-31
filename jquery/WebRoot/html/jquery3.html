@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>基础DOM和CSS操作</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+	
+	$(function(){
+		//获取该div下面的html内容
+		//alert($('#box').html())
+		//获取文本内容
+		//alert($('#box').text())
+		//设置html内容
+		$('#box').html('更改后的html');
+		//获取表单的内容
+		//$('input').get(0).focus()
+		//alert($('input').val())
+		//更改表单的内容
+		//$('input').val("更改表单内容")
+		//对复选框 下拉菜单等的操作
+		$('input').val(['男','女','编程']);
+		alert($('div').attr('id'))
+		//添加属性
+		$('div').attr('title',"属性练习")
+		//在val(写function增加操作性)
+		$('#fv').html(function(index,value){
+			return value+'<em>练习function的在更改的作用</em>';
+		});
+		//过去当前CSS样式并且遍历它
+		var list=$('#list').css(['color','font-size','height'])
+		//for(var i in list){
+		//	alert(i+':'+list[i]);
+		//}
+		//利用each的循环
+		//$.each(list,function(attr,value){
+		//	alert(attr+':'+value);
+		//});
+		//设置多个CSS的方法,json书记格式
+		$('#css').css({
+			'color':'blue',
+			'font-size':'23px',
+			'background-color':'red'
+			
+		})
+		//addclass 增加class属性,删除用removeClass
+		$('#addclass').addClass('red size')
+		var count=0
+		//样式之间的切换,点击后字体的大小切换 可以增加参数true 增加true之后将只能变但是无法切换
+		$('a').click(function(){
+			$(this).toggleClass('size',count++%2==0)//,true
+		})
+		//根据判断的结果做修改, 切换
+		//$('a').click(function(){
+		//	$(this).toggleClass(function(){
+		//		return $(this).hasClass('purple')?'red':'purple';
+		//	})
+		//});
+		//获取DOM节点的宽度,设置直接在内部
+		alert($('div').width())
+		//function
+		$('a').width(function(index,width){
+			return width+100;
+		})
+		
+	});
+	</script>
+	<style type="text/css">
+	.red{color: red;}
+	.size{font-size: 32px;}
+	.purple{color: purple;}
+	</style>
+  </head>
+  
+  <body>
+    <div id="box">
+   <strong> 基础DOM和CSS操作</strong>
+    </div>
+      <div>
+   <strong> 属性练习</strong>
+    </div>
+   <!--   <input type="text" value="获取表单内容"/>-->
+   <input type="radio" value="男"/>男
+   <input type="radio" value="女"/>女
+   <input type="checkbox" value="编程"/>编程<br/>
+   <div id="fv">
+   		<p>练习function的在val的应用</p>
+   </div>
+   <div id="list" style="color: red;font-size: 30px;height: 50px;">
+   	遍历CSS样式
+   </div>
+   <div id="css">一次设置多个CSS的样式</div>
+   <div id="addclass">增加class属性</div>
+   <a href="#" class="purple">样式的切换</a>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>高级事件</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <link rel="stylesheet" type="text/css" href="../css/H-ui.css">
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	//高级事件中的方法,获取坐标 pageX,pageY
+	$('#btn').bind('click',function(e){
+		alert(e.type)
+		alert(e.pageX+","+e.pageY)
+	})
+	//data,获取json中的值
+	$('#btn1').bind('click',{username:'lutong',age:20},function(e){
+		var jsonObject={
+			name:'lutong',
+			password:'123456',
+			socre:90
+		}
+		//获取bind中的数据
+		alert(e.data.username)
+		//获取时间戳
+		alert(e.timeStamp)
+		//获取json数据
+		alert(jsonObject.socre)
+		//获取鼠标按键对应的值
+		alert(e.which)
+	})
+	//取消事件的默认行为
+	$('input').click(function(e){
+		e.preventDefault();
+	})
+	//阻止冒泡行为 stopPropagation(),或者直接return false
+});
+</script>
+  </head>
+  
+  <body>
+    
+    <button id="btn" class="btn btn-primary">按钮1</button>
+     <button id="btn1" class="btn btn-primary">按钮2</button>
+    <form action="jquery3.html">
+    <input type="submit" value="提交"/>
+    </form>
+  </body>
+</html>

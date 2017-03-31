@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>vue1.html</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//将圆放大缩小的功能
+		$('#c').css('fill','red')
+		var r=30
+		$('#btn1').click(function(){
+			//var count+=r
+			$('#c').attr('r',function(){
+				
+				r=r+10;
+				return r;
+				
+			})
+		})
+		$('#btn2').click(function(){
+			//var count+=r
+			$('#c').attr('r',function(){
+				if(r>0){
+				r=r-10;
+				return r;
+				}
+				
+			})
+		})
+		//将文本信心显示到页面上
+		var app = new Vue({
+			el : '#app',
+			data : {
+				message : 'Hello Vue!'
+			}
+		})
+		var app1=new Vue({
+			el:'#app1',
+			data:{
+				a:'测试v-text数据'
+			}
+		})
+		//页面加载时间
+		var app2 = new Vue({
+			el : '#app2',
+			data : {
+				message : '页面加载于' + new Date()
+			}
+		})
+		//关联v-if属性 控制，判断
+		var app3=new Vue({
+			el:'#app3',
+			data:{
+				seen:false
+			}
+		})
+		//for循环,结合jquery可以实现后台的数据遍历后写到页面上
+		var jsonObject={
+			 id:'lutong',
+			 name:'duranran',
+			 age:'nicai'
+		};
+		var app4=new Vue({
+			el:'#app4',
+			data:{
+				todos:[
+				  	//{text:'第一个菜单'},
+				  //{text:'第二个菜单'},
+				  //{text:'第三个菜单'}
+				  	{text:'id:'+jsonObject.id},
+				  	{text:'name:'+jsonObject.name},
+				  	{text:'age:'+jsonObject.age}
+				       
+				      ]
+			}
+		})
+		//逆转消息
+		var app5=new Vue({
+			el:'#app5',
+			data:{
+				message:'hello Vue!'
+			},
+			methods:{
+				reverseMessage:function(){
+					this.message=this.message.split('').reverse().join('')
+				}
+			}
+		})
+		//双向绑定
+		var app6=new Vue({
+			el:'#app6',
+			data:{
+				message:''
+			}
+		})
+	});
+</script>
+</head>
+
+<body>
+	<div id="app">{{ message }}</div>
+	<div id="app1" v-text="a"></div>
+	<div id="app2">
+		<!-- 根据v-bind:title动态绑定JS中的message -->
+		<p v-bind:title="message">将鼠标停在此处查看信息</p>
+	</div>
+	<div id="app3">
+		<p v-if="seen">
+		你看见我了
+		</p>
+	</div>
+	<!-- for循环 -->
+	<div id="app4">
+	<ol>
+	<li v-for="todo in todos">
+	{{todo.text}}
+	</li>
+	</ol>
+	</div>
+	<!-- 逆转消息 -->
+	<div id="app5">
+	<p>{{message}}</p>
+	<button v-on:click="reverseMessage">逆转消息</button>
+	</div>
+	<!-- 双向绑定 -->
+	<div id="app6">
+	<p style="font-size: 23px;color: red;">{{message}}</p>
+	<input v-model="message"/>
+	</div>
+	<!-- 引入svg插件的三种方式 -->
+	<iframe src="circle.svg"></iframe>
+	<embed src="circle.svg"/>
+	<object data="circle.svg" ></object>
+	<svg style="width: 300px;height: 300px">
+	<circle id="c" cx="100" cy="50" r="30" stroke="black"
+		stroke-width="2"/>
+	</svg>
+	<button id="btn1">放大</button>
+	<button id="btn2">缩小</button>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jquery6.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+ <link rel="stylesheet" type="text/css" href="../css/H-ui.css">
+<script type="text/javascript" src="../js/jquery.js"></script>
+  	<script type="text/javascript" src="../js/H-ui.js"></script>
+  <script type="text/javascript">
+  $(function(){ 
+	  //设置cookie,多个页面的传值，在jquer7.jsp中设置了
+	 
+	  var obj=$.cookie('username')
+     	alert(obj);
+});    
+</script> 
+  </head>
+  
+  <body>
+    <div id="accordion">
+    <h1>菜单1</h1>
+    <div>内容1</div>
+    <h1>菜单2</h1>
+    <div>内容2</div>
+    <h1>菜单3</h1>
+    <div>内容3</div>
+    </div>
+  </body>
+</html>

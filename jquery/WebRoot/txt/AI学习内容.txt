@@ -1,0 +1,9 @@
+h-ui（√）               h-ui.admin（√）		gitHub			hadoop...
+jquery（√）		 vue.js			爬虫		FFmpeg(视频，图片处理等...）
+JavaScript控制SVG  或者canvas
+微服务框架 kubernates+docker
+
+权限控制:shiro
+缓存池:deobdo
+3-28:
+jquery的常规选择器，过滤选择器，表单选择器

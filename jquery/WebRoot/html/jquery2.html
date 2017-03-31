@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:svg="http://www.w3.org/2000/svg">
+  <head>
+    <title>jquery2.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+  <script type="text/javascript">
+  $(function(){
+	  //获取第一个元素 或者('li').first() 下同
+	  $('li:first').css('color','red')
+	  //获取最后一个元素
+	  $('li:last').css('font-size','30px')
+	  //选择class不是select的元素
+	  $('a:not(.select)').css('color','orange')
+	  //选择偶数行的元素
+	  $('li:even').css('background-color','blue')
+	  //选择奇数行元素
+	  $('li:odd').css('background-color','green')
+	  //索引等于index的元素
+	  $('p:eq(0)').css('color','red')
+	  //索引大于index的元素
+	  $('p:gt(1)').css('color','blue')
+	  //索引小于index的元素
+	  $('p:lt(3)').css('color','blue')
+	  //选择当前被焦点的元素
+	 // $('input').get(0).focus();
+	  //$('input:focus').css('background','red')
+	  //找到内容包含
+	  $('div:contains("lutong")').css('font-size','30px')
+	  //获取父节点 。parent
+	  //将隐藏的元素一秒后显示出来*
+	  $('.show:hidden').css('background','blue').show(1000);
+	 //判断是否相同
+	  alert($('.ppp').is(function(){
+		  return $(this).attr('title')=='one';
+		  
+	  }));
+	//获取指定元素
+	  $('a').slice(0,2).css('background','orange')
+	  //过滤使用 filter
+  });
+  
+  </script>
+  </head>
+  
+  <body>
+  <div style="display: none;" class="show">动画显示隐藏</div>
+  <div>lutong</div>
+  <div>123</div>
+  <div>456</div>
+    <div>
+    <a href="#" class="select">过滤选择器1</a>
+    <a href="#">过滤选择器2</a>
+    <a href="#">过滤选择器3</a>
+    </div>
+    <p class="ppp" title="one">过滤选择器1</p>
+    <p class="ppp">过滤选择器2</p>
+    <p>过滤选择器</p>
+    <p>过滤选择器</p>
+    <ul>
+    <li>过滤选择器1</li>
+    <li>过滤选择器2</li>
+    <li>过滤选择器3</li>
+    </ul>
+    <input type="text"/>
+    
+  </body>
+</html>

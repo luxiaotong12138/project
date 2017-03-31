@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM节点操作</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+ <link rel="stylesheet" type="text/css" href="../css/H-ui.css">
+
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+  <script type="text/javascript">
+  //动态创建元素
+  $(function(){
+	  var box=$('<div id="box">DOM节点操作</div>')
+	 $('body').append(box)
+	 //$('body').html(box)	也可以插入
+	 $('div').append(function(index){//index 索引的角标
+		 return '<strong>function插入</strong>'
+	 });
+	  //将指定节点移入另外一个节点后面
+	  //$('a').appendTo('div')
+	   //将指定节点移入另外一个节点前面
+	 // $('p').prepend('pjiedian')
+	  //涉及到标签的时候
+	 // $('p').prependTo('a')
+	  //表单选择器
+	  //alert($('input[name=username]').val())
+	  //获取使用的input数量,同理 :text,:radio,:sumbit...等
+	 // alert($(':input').length)
+	  //confirm("信息确认框")
+	  //jquery对事件的处理 click,mousedown等,用bind进行封装
+	  $('button').bind('mouseover mouseout',function(){
+		  //alert("click!")
+		  $('address').html(function(index,value){
+			 // alert("click!")
+			  $(this).html('长安区')
+		  })
+	  })
+	  //json形式表现不同操作
+	  $('#btn').bind({
+		  mouseover:function(){
+			  alert("移入")
+		  },
+	  	   mouseout:function(){
+	  		   alert("移出")
+	  	   }
+	  })
+	  //删除事件
+	  $('button').unbind("//删除某个事件")
+	  //切换 需要引入jquery-migrate.js
+	 /* $('#c').toggle(function(){
+		  $(this).css('background-color':'red');
+	  },function(){
+		  $(this).css('background-color':'blue');
+	  },function(){
+		  $(this).css('background-color':'red');
+	  })*/
+	  //自定义切换 
+	  var flag=1;
+	  $('#c').click(function(){
+		  if(flag==1){
+			  $(this).css('background-color','red');
+			  flag=2;
+		  }else if(flag==2){
+			  $(this).css('background-color','blue');
+			  flag=3
+		  }else if(flag=3){
+			  $(this).css('background-color','green');
+			  flag=1
+		  }
+	  });
+  });
+  
+  </script>
+  </head>
+  
+  <body>
+    <div>1111</div>
+    <div>2222</div>
+    <div>3333</div>
+    <strong>strong</strong>
+    <a href="#">转移</a>
+    <p>节点</p>
+    -----------------表单选择器----------------<br>
+    <form action="">
+    <input type="text" value="username" name="username"/>
+    <input type="password" value="password" name="password"/>
+    <button class="btn btn-primary radius">点击事件</button>
+    </form>
+    <address>西安市</address>
+    <button id="btn" class="btn btn-success radius">移动</button>
+    <div id="c" style="width:100px; height: 100px;background-color: green">
+    
+    </div>
+  </body>
+</html>
