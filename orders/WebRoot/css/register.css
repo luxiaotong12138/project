@@ -1,0 +1,26 @@
+#loacl{
+	background-color:#BFEFFF;
+	height: 300px;
+	width: 300px;
+}
+
+#t1{
+	
+	border-color: 	#E3E3E3;
+	font-size: 23px;
+	font-style: normal;
+	color: #CD69C9;
+}
+#button1{
+	font-size: 16px;
+	width: 80px; 
+	height: 30px;
+	color: red;
+}
+
+#button2{
+	font-size: 19px;
+	width: 80px; 
+	height: 30px;
+	color: #76EE00;
+}

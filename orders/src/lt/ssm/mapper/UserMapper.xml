@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 加载mapper -->
+<mapper namespace="lt.ssm.mapper.UserMapper">
+<!-- 查找用户名 用户注册的验证  -->
+	<select id="ValiateUsername" resultType="java.lang.String">
+	select
+		username from orders.userlogin;
+	</select>
+	<!-- 用户注册 user表-->
+	<insert id="RegisterUser" parameterType="lt.ssm.pojo.RegisterVo">
+		INSERT INTO user(username, birthday, sex,address) 
+			VALUES (#{register.username}, #{register.birthday},#{register.sex},#{register.address});
+	</insert>
+	<!-- 用户注册 userlogin表 -->
+	<insert id="RegisterUserlogin" parameterType="lt.ssm.pojo.RegisterVo">
+	INSERT INTO userlogin(username, password) 
+		VALUES (#{userLogin.username}, #{userLogin.password});
+	</insert>
+	<select id="ValiateLogin" resultType="UserLogin">
+		select userid,username,password from userlogin;
+	</select>
+	<!-- 查找所有的信息，管理员使用 -->
+	<select id="viewUserInfo" resultType="User">
+		select * from user;
+	</select>
+	<!-- 删除user，userlogin表的数据 -->
+	<delete id="deleteUserLogin" parameterType="java.lang.Integer">
+	delete from userlogin where userid=#{id};
+	</delete>
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		delete from user where id=#{id};
+	</delete>
+	<!-- 根据ID更新用户 -->
+	<update id="updateUser" parameterType="User" >
+    update user
+    <set >
+      <if test="username!= null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday!= null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="sex!= null" >
+       sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address!= null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    	where id=#{id};
+  </update>
+  <update id="updateModifyPsd" parameterType="UserLogin">
+  UPDATE userlogin SET password=#{password} WHERE userid=#{userid};
+  
+  </update>
+</mapper>

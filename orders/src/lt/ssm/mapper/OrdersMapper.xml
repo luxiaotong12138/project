@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 加载mapper -->
+<mapper namespace="lt.ssm.mapper.OrdersMapper">
+	<insert id="shoppingCartOrders" parameterType="lt.ssm.po.Orders">
+		INSERT INTO orders(user_id,number,createtime,note) VALUES (#{user_id}, #{number}, #{createtime}, #{note});
+	</insert>
+	<insert id="shoppingCartOrderDetail" parameterType="lt.ssm.po.OrderDetail">
+		INSERT INTO orderdetail(orders_id,items_id,items_num) VALUES (#{orders_id},#{items_id}, #{items_num});
+		
+	</insert>
+
+	<select id="findMaxOrdersId" resultType="java.lang.Integer">
+		select id from orders where id=(select max(id) from orders);
+	</select>
+	<!-- 购物车的显示 -->
+	<select id="myShoppingCart" parameterType="lt.ssm.pojo.UserOrdersVo" resultType="lt.ssm.pojo.ShoppingCart">
+		SELECT o2.items_num
+         ,i.name
+         ,i.price
+         ,i.pic
+         ,o1.number
+         ,o1.createtime
+   		  FROM USER         u
+            ,orderdetail o2
+       		,items        i
+       		,orders       o1
+  				WHERE 1 = 1
+    			 AND i.id = o2.items_id
+    			 AND o2.orders_id = o1.id
+    		 	 AND o1.user_id = u.id
+    			 AND u.id = #{user.id}
+				 AND O1.note=#{orders.note};
+	</select>
+	<!-- 将购物车人里面的东西购买 -->
+	<update id="shoppingCartPurchase" parameterType="lt.ssm.po.Orders">
+	UPDATE orders SET note=#{note} WHERE  number=#{number};
+	</update>
+	<!-- 显示已购买的物品 -->
+	<select id="myPurchase" parameterType="lt.ssm.pojo.UserOrdersVo" resultType="lt.ssm.pojo.ShoppingCart">
+		SELECT o2.items_num
+         ,i.name
+         ,i.price
+         ,i.pic
+         ,o1.number
+         ,o1.createtime
+   		  FROM USER         u
+            ,orderdetail o2
+       		,items        i
+       		,orders       o1
+  				WHERE 1 = 1
+    			 AND i.id = o2.items_id
+    			 AND o2.orders_id = o1.id
+    		 	 AND o1.user_id = u.id
+    			 AND u.id = #{user.id}
+				 AND O1.note=#{orders.note};
+	</select>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离 注意：使用mapper代理方法开发，namespace有特殊重要的作用，namespace等于mapper接口地址 -->
+<mapper namespace="lt.ssm.mapper.ItemsMapper">
+
+
+	<!-- 根据商品类型查找用户信息的sql语句F -->
+	<select id="findItemsBytypeF" parameterType="java.lang.String" resultType="Items">
+		SELECT
+		* FROM orders.items WHERE ordertype LIKE '%${value}%' limit 0,4;
+	</select>
+	<!-- 根据商品类型查找用户信息的sql语句L -->
+	<select id="findItemsBytypeL" parameterType="java.lang.String" resultType="Items">
+		SELECT
+		* FROM orders.items WHERE ordertype LIKE '%${value}%' limit 4,4;
+	</select>
+	<!-- 根据商品ID查找用户信息的sql语句 -->
+	<select id="findItemsById" parameterType="java.lang.Integer" resultType="Items">
+		SELECT
+		* FROM orders.items WHERE id=#{value};
+	</select>
+	<!-- 查找该类型下面共有多少条数据 -->
+	<select id="totalRecord" parameterType="java.lang.String" resultType="java.lang.Integer">
+	SELECT count(*) FROM orders.items where ordertype like '${value}%';
+	</select>
+	<!-- 根据商品类型查找用户信息的sql语句分页-->
+	<select id="findItemsBytypePageF" parameterType="lt.ssm.pojo.PageItemsVo" resultType="Items">
+		SELECT
+		* FROM orders.items WHERE ordertype LIKE '%${pageItems.ordertype}%' limit #{Spagenum},4;
+	</select> 
+	<select id="findItemsBytypePageL" parameterType="lt.ssm.pojo.PageItemsVo" resultType="Items">
+	SELECT
+		* FROM orders.items WHERE ordertype LIKE '%${pageItems.ordertype}%' limit #{Spagenum},4;
+	</select>
+	<!-- 根据name的搜索功能 -->
+	<select id="searchItemsByName" parameterType="Items" resultType="Items">
+	SELECT 
+		* FROM orders.items where name like '%${value}%';
+	</select>
+	<!-- 查找所有商品信息 -->
+	<select id="viewItems" resultType="Items">
+	select * from items;
+	</select>
+	<delete id="deleteItems" parameterType="java.lang.Integer">
+		delete from items where id=#{id};
+	</delete>
+	
+	<update id="updateItems" parameterType="Items" >
+    update items
+    <set >
+      <if test="name!= null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price!= null" >
+        price = #{price,dbcType=VARCHAR},
+      </if>
+      <if test="detail!= null" >
+       detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="pic!= null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+       <if test="createtime!= null" >
+       createtime = #{createtime,jdbcType=DATE},
+      </if>
+       <if test="ordertype!= null" >
+        ordertype = #{ordertype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    	where id=#{id};
+  </update>
+  <!-- 显示热销商品 -->
+  	<select id="viewBestSeller" resultType="lt.ssm.pojo.BestSeller">
+  	select items_id,sum(items_num)as items_num,name 
+		from orderdetail,items where 1=1
+		and orderdetail.items_id=items.id
+		group by items_id;
+  	</select>
+</mapper>
