@@ -18,7 +18,7 @@
 <meta http-equiv="description" content="This is my page">
 <link rel="stylesheet" type="text/css" href="css/mainStyle.css">
 
-
+<script src="js/jquery-3.1.1.js"></script>
 
 <title>欢迎来到购物中心</title>
 <!--  
@@ -30,9 +30,78 @@ function gettext(){
 	
 }
 </script>-->
+<script type="text/javascript">
+$(document).ready(function(){ 
+	 $('.spinner').fadeOut();
+	 $('#temp').fadeOut();
+	});
+</script>
+<style>
+.spinner {
+  margin: 300px auto;
+  width: 50px;
+  height: 60px;
+  text-align: center;
+  font-size: 10px;
+}
+ 
+.spinner > div {
+  background-color: #67CF22;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+   
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+ 
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+ 
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+ 
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+ 
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+ 
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) } 
+  20% { -webkit-transform: scaleY(1.0) }
+}
+ 
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+</style> 
 </head>
 
 <body>
+<div style="width: 1300px;height: 780px;" id="temp">
+<div id="loading" class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+</div>
 	<div id="Container">
 		<div id="Header">
 			<div id="logo">
